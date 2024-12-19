@@ -58,10 +58,10 @@ while t < Tf:
         lam = dt/h
     # warning! uold = u is a wrong assignment
     uold = np.copy(u)
-    uold[-1] = uold[ng-2] #periodic  boundary condition
-    for i in range(0, ng):
+    #uold[-1] = uold[ng-1]
+    for i in range(1, ng):
         u[i] = uold[i] - lam * (uold[i] - uold[i-1])
-
+    u[0] = uold[0] - lam * (uold[0] - uold[ng-1])   #periodic  boundary condition
     #uold[-1] = uold[ng-2] 
     #for i in range(0, ng-1):
     #    u[i] = uold[i] - lam * (uold[i+1] - uold[i])    #forward difference
