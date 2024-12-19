@@ -1,0 +1,4 @@
+Saved file  sol.txt
+Saved file  exact.txt
+No. of cells, Global error
+800 7.020756198627964e-11
