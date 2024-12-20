@@ -18,13 +18,13 @@ args = parser.parse_args()
 def smooth(x):
     return np.sin(2.0*np.pi*x)
 
-ng = args.ng;
+ng = args.ng
 x  = np.linspace(0,1,ng)
-h = 1/(ng-1);
+h = 1/(ng-1)
 u  = smooth(x)  # initialize the solution vector
 ue = smooth(x) # exact solution at t =0
 plot_freq = args.plot_freq
-cfl = 0.9
+cfl = args.cfl
 t = 0.0  # initial time
 # plot initial condition
 if plot_freq >0:
@@ -40,7 +40,7 @@ if plot_freq >0:
     wait = input("Press enter to continue ")
 
 #Error computation
-def compute_error(u1,t):
+def compute_error(u1,t,x):
     error_norm1 = 0.0; error_norm2 = 0.0
     ue = smooth(x-t)
     #dom_len = xmax - xmin
@@ -96,7 +96,7 @@ fname2 = 'uw.txt'
 np.savetxt(fname2, np.column_stack([x, u]) )
 
 if args.compute_error == 'yes':
-    er1, er2 = compute_error(u[0:ng],t)
+    er1, er2 = compute_error(u[0:ng],t,x)
     print('h, L1 error norm, L2 error norm = ')
     print(h, er1, er2)
 
